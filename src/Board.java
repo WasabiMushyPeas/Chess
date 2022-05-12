@@ -41,6 +41,7 @@ public class Board {
     private Piece[][] setupBoard(){
         Piece[][] tempBoard = new Piece[8][8];
         
+        
 
         return tempBoard;
     }

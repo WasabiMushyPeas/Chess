@@ -2,7 +2,7 @@ package src;
 public class Pawn extends Piece {
 
     public Pawn(Pos pos, Boolean isWhite){
-        super(pos, 1, isWhite);
+        super(pos, 1, isWhite, "pawn");
     }
 
     public Boolean move(Pos moveTo){
@@ -13,7 +13,8 @@ public class Pawn extends Piece {
                     Main.chessBoard.setPos(this, this.getPos(), moveTo);
                     return true;
                 }
-                if(Main.chessBoard.getBoard(moveTo) != null){
+                if(Main.chessBoard.getBoard(moveTo) != null && (super.getPos().getRow() + 1 == moveTo.getRow() || super.getPos().getRow() - 1 == moveTo.getRow())){
+                    Main.chessBoard.getBoard(moveTo).take();
 
                 }
             }

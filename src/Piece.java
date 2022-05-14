@@ -5,11 +5,13 @@ public class Piece {
     private Boolean isAlive = true;
     private Boolean isWhite = true;
     private Boolean HasMoved = false;
+    private String name;
 
-    public Piece(Pos pos, int value, boolean isWhite){
+    public Piece(Pos pos, int value, boolean isWhite, String name){
         position = pos;
         this.value = value;
         this.isWhite = isWhite;
+        this.name = name;
     }
 
     public Pos setPos(Pos pos){
@@ -32,6 +34,22 @@ public class Piece {
 
     public boolean isWhite(){
         return isWhite;
+    }
+
+    public int getValue(){
+        return value;
+    }
+
+    public boolean equals(Piece piece){
+        return position == piece.getPos() && isWhite == piece.isWhite() && value == piece.getValue();
+    }
+
+    public String name(){
+        return name;
+    }
+
+    public void take(){
+
     }
 
     

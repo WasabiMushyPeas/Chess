@@ -45,4 +45,8 @@ public class Board {
 
         return tempBoard;
     }
+
+    public void printBoard(){
+        
+    }
 }

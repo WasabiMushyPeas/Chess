@@ -6,12 +6,14 @@ public class Piece {
     private Boolean isWhite = true;
     private Boolean HasMoved = false;
     private String name;
+    private Character letter;
 
-    public Piece(Pos pos, int value, boolean isWhite, String name){
+    public Piece(Pos pos, int value, boolean isWhite, String name, Character leter){
         position = pos;
         this.value = value;
         this.isWhite = isWhite;
         this.name = name;
+        this.letter = leter;
     }
 
     public Pos setPos(Pos pos){
@@ -50,6 +52,10 @@ public class Piece {
 
     public void take(){
 
+    }
+
+    public Character getLetter(){
+        return letter;
     }
 
     

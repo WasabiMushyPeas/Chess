@@ -2,7 +2,7 @@ package src;
 public class Pawn extends Piece {
 
     public Pawn(Pos pos, Boolean isWhite){
-        super(pos, 1, isWhite, "pawn");
+        super(pos, 1, isWhite, "pawn", 'p');
     }
 
     public Boolean move(Pos moveTo){
@@ -19,8 +19,7 @@ public class Pawn extends Piece {
                 }
             }
         }
-
-        
+        return false;        
     }
     
 }

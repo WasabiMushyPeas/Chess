@@ -1,4 +1,7 @@
 package src;
+
+import javax.swing.plaf.synth.SynthTabbedPaneUI;
+
 public class Board {
     private Piece[][] board = new Piece[8][8];
 
@@ -40,13 +43,38 @@ public class Board {
 
     private Piece[][] setupBoard(){
         Piece[][] tempBoard = new Piece[8][8];
-        
+        for(int i = 0; i < tempBoard.length; i++){
+            tempBoard[i][1] = new Pawn(new Pos(i, 1), true);
+        }
+
+        for(int i = 0; i < tempBoard.length; i++){
+            tempBoard[i][6] = new Pawn(new Pos(i, 6), false);
+        }
         
 
         return tempBoard;
     }
 
     public void printBoard(){
-        
+        int cPieceRow = 0;
+        int cPieceCol = 0;
+        for(int i = 0; i < board.length*2 + 1; i++){
+            if((i + 2) % 2 == 0){
+                for(int j = 0; j < board.length*2 + 1; j++){
+                    System.out.print("_");
+                }
+            }else{
+                for(int j = 0; j < board.length*2 + 1; j++){
+                    
+                    if((j + 2) % 2 == 0){
+                        System.out.print("|");
+                    }else{
+                        System.out.print(this.getBoard(new Pos(cPieceRow, cPieceCol)).getLetter());
+                        cPieceCol++;
+                    }
+                }
+                cPieceRow++;
+            }
+        }
     }
 }

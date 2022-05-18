@@ -2,7 +2,7 @@ package src;
 
 
 public class Board {
-
+    Character[] chessLingoLetters = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = " \u001b[31m";
     public static final String ANSI_BLUE = " \u001b[34m";
@@ -80,13 +80,28 @@ public class Board {
     public void printBoard(){
         int cPieceCol = 0;
         int cPieceRow = 0;
+        int chessRow = 8;
+        System.out.print("  ");
+        for(int k = 0; k < board.length; k++){
+            System.out.print("   " + chessLingoLetters[k] + " ");
+        }
+        System.out.println("");
         for(int i = 0; i < board.length*2 + 1; i++){
+            
             if((i + 2) % 2 == 0){
-                for(int j = 0; j < board.length*5 + 2; j++){
-                    System.out.print("=");
+                for(int j = 0; j < board.length*5 + 3; j++){
+                    if(j == 0 || j == 1){
+                        System.out.print(" ");
+
+                    }else{
+                        System.out.print("=");
+                    }
+                    
                 }
                 System.out.println("");
             }else{
+                System.out.print(chessRow + " ");
+                chessRow--;
                 for(int j = 0; j < board.length*2 + 1; j++){
                     
                     if((j + 2) % 2 == 0){

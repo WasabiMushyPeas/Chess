@@ -54,7 +54,23 @@ public class Board {
         for(int i = 0; i < tempBoard.length; i++){
             tempBoard[i][6] = new Pawn(new Pos(i, 6), false);
         }
+        tempBoard[0][0] = new Rook(new Pos(0, 0), true);
+        tempBoard[7][0] = new Rook(new Pos(7, 0), true);
+        tempBoard[1][0] = new Knight(new Pos(1, 0), true);
+        tempBoard[6][0] = new Knight(new Pos(6, 0), true);
+        tempBoard[2][0] = new Bishop(new Pos(2, 0), true);
+        tempBoard[5][0] = new Bishop(new Pos(5, 0), true);
+        tempBoard[3][0] = new Queen(new Pos(3, 0), true);
+        tempBoard[4][0] = new King(new Pos(4, 0), true);
 
+        tempBoard[0][7] = new Rook(new Pos(0, 0), false);
+        tempBoard[7][7] = new Rook(new Pos(7, 0), false);
+        tempBoard[1][7] = new Knight(new Pos(1, 0), false);
+        tempBoard[6][7] = new Knight(new Pos(6, 0), false);
+        tempBoard[2][7] = new Bishop(new Pos(2, 0), false);
+        tempBoard[5][7] = new Bishop(new Pos(5, 0), false);
+        tempBoard[3][7] = new Queen(new Pos(3, 0), false);
+        tempBoard[4][7] = new King(new Pos(4, 0), false);
         
         
 

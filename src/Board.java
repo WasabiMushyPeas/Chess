@@ -89,7 +89,7 @@ public class Board {
         for(int i = 0; i < board.length*2 + 1; i++){
             
             if((i + 2) % 2 == 0){
-                for(int j = 0; j < board.length*5 + 3; j++){
+                for(int j = 0; j < board.length*5 + 4; j++){
                     if(j == 0 || j == 1){
                         System.out.print(" ");
 

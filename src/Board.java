@@ -1,8 +1,12 @@
 package src;
 
-import javax.swing.plaf.synth.SynthTabbedPaneUI;
 
 public class Board {
+
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_RED = " \u001b[31m";
+    public static final String ANSI_BLUE = " \u001b[34m";
+
     private Piece[][] board = new Piece[8][8];
 
     public Board(){
@@ -50,30 +54,45 @@ public class Board {
         for(int i = 0; i < tempBoard.length; i++){
             tempBoard[i][6] = new Pawn(new Pos(i, 6), false);
         }
+
+        
         
 
         return tempBoard;
     }
 
     public void printBoard(){
-        int cPieceRow = 0;
         int cPieceCol = 0;
+        int cPieceRow = 0;
         for(int i = 0; i < board.length*2 + 1; i++){
             if((i + 2) % 2 == 0){
-                for(int j = 0; j < board.length*2 + 1; j++){
-                    System.out.print("_");
+                for(int j = 0; j < board.length*5 + 2; j++){
+                    System.out.print("=");
                 }
+                System.out.println("");
             }else{
                 for(int j = 0; j < board.length*2 + 1; j++){
                     
                     if((j + 2) % 2 == 0){
-                        System.out.print("|");
+                        System.out.print("||");
                     }else{
-                        System.out.print(this.getBoard(new Pos(cPieceRow, cPieceCol)).getLetter());
+                        if(this.getBoard(new Pos(cPieceCol, cPieceRow)) != null){
+                            if(this.getBoard(new Pos(cPieceCol, cPieceRow)).isWhite()){
+                                System.out.print(ANSI_BLUE+this.getBoard(new Pos(cPieceCol, cPieceRow)).getLetter()+ " "+ANSI_RESET);
+                            }else{
+                                System.out.print(ANSI_RED+this.getBoard(new Pos(cPieceCol, cPieceRow)).getLetter()+ " "+ANSI_RESET);
+                            }
+                            
+                        }else{
+                            System.out.print("   ");
+                        }
+
                         cPieceCol++;
                     }
                 }
+                System.out.println("");
                 cPieceRow++;
+                cPieceCol = 0;
             }
         }
     }

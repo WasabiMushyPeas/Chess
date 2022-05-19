@@ -32,8 +32,10 @@ public class Board {
         return board;
     }
 
-    public void takePos(Pos setPos){
-        board[setPos.getRow()][setPos.getColum()] = null;
+    public void takePos(Pos setPos, Boolean isWhite){
+        if(this.getBoard(setPos).isWhite() != isWhite){
+            board[setPos.getRow()][setPos.getColum()] = null;
+        }
     }
 
     public Pos getPosOfPiece(Piece piece){
@@ -60,9 +62,9 @@ public class Board {
             }else{
                 return false;
             }
-            if(input.charAt(2) != ' '){
+            if(input.charAt(0) != ' '){
                 for(int i = 0; i < chessLingoLetters.length; i++){
-                    if(input.charAt(2) == chessLingoLetters[i]){
+                    if(input.charAt(0) == chessLingoLetters[i]){
                         currentRow = i;
                     }
                 }
@@ -76,9 +78,9 @@ public class Board {
             }else{
                 return false;
             }
-            if(input.charAt(5) != ' '){
+            if(input.charAt(3) != ' '){
                 for(int i = 0; i < chessLingoLetters.length; i++){
-                    if(input.charAt(5) == chessLingoLetters[i]){
+                    if(input.charAt(3) == chessLingoLetters[i]){
                         moveRow = i;
                     }
                 }

@@ -10,7 +10,7 @@ public class Main{
     
         chessBoard.printBoard();
         
-        System.out.println("You are blue your move first type you move (EX Piece R at 8a to 5a so \"R8a 5a\"):");
+        System.out.println("You are blue your move first type you move (EX Piece R at a8 to a5 so \"a8 a5\"):");
         while(true){
             String input = myScanner.nextLine();
             if(input != ""){

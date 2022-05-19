@@ -13,6 +13,7 @@ public class Pawn extends Piece {
                     Main.chessBoard.setPos(this, this.getPos(), moveTo);
                     return true;
                 }
+
                 if(Main.chessBoard.getBoard(moveTo) != null && (super.getPos().getRow() + 1 == moveTo.getRow() || super.getPos().getRow() - 1 == moveTo.getRow())){
                     Main.chessBoard.takePos(moveTo);
                     super.moved();

@@ -87,9 +87,7 @@ public class Board {
                 return false;
             }
             if(moveRow >= 0 && moveRow <= 7){
-                boolean test1 = Main.chessBoard.getBoard(new Pos(moveRow, moveColum)) == null;
-                boolean test2 = Main.chessBoard.getBoard(new Pos(currentRow, currentColum)) != null;
-                if(Main.chessBoard.getBoard(new Pos(moveRow, moveColum)) == null && Main.chessBoard.getBoard(new Pos(currentRow, currentColum)) != null){
+                if(Main.chessBoard.getBoard(new Pos(currentRow, currentColum)) != null){
                     return Main.chessBoard.getBoard(new Pos(currentRow, currentColum)).move(new Pos(moveRow, moveColum));
                 }
             }

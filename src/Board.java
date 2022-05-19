@@ -2,7 +2,7 @@ package src;
 
 
 public class Board {
-    Character[] chessLingoLetters = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
+    char[] chessLingoLetters = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = " \u001b[31m";
     public static final String ANSI_BLUE = " \u001b[34m";
@@ -28,7 +28,12 @@ public class Board {
     public Piece[][] setPos(Piece piece, Pos OldPos, Pos NewPos){
         board[OldPos.getRow()][OldPos.getColum()] = null;
         board[NewPos.getRow()][NewPos.getColum()] = piece;
+        piece.setPos(NewPos);
         return board;
+    }
+
+    public void takePos(Pos setPos){
+        board[setPos.getRow()][setPos.getColum()] = null;
     }
 
     public Pos getPosOfPiece(Piece piece){
@@ -44,33 +49,100 @@ public class Board {
         return piecePos;
     }
 
+    public Boolean humanInput(String input){
+        int currentRow = 0;
+        int currentColum = 0;
+        int moveRow = 0;
+        int moveColum = 0;
+        if(input.length() == 6){
+            if(input.charAt(1) != ' '){
+                currentColum = 7 - (Character.getNumericValue(input.charAt(1)) - 1);
+            }else{
+                return false;
+            }
+            if(input.charAt(2) != ' '){
+                for(int i = 0; i < chessLingoLetters.length; i++){
+                    if(input.charAt(2) == chessLingoLetters[i]){
+                        currentRow = i;
+                    }
+                }
+
+            }else{
+                return false;
+            }
+
+            if(input.charAt(4) != ' '){
+                moveColum = 7 - (Character.getNumericValue(input.charAt(4)) - 1);
+            }else{
+                return false;
+            }
+            if(input.charAt(5) != ' '){
+                for(int i = 0; i < chessLingoLetters.length; i++){
+                    if(input.charAt(5) == chessLingoLetters[i]){
+                        moveRow = i;
+                    }
+                }
+
+            }else{
+                return false;
+            }
+            if(moveRow >= 0 && moveRow <= 7){
+                boolean test1 = Main.chessBoard.getBoard(new Pos(moveRow, moveColum)) == null;
+                boolean test2 = Main.chessBoard.getBoard(new Pos(currentRow, currentColum)) != null;
+                if(Main.chessBoard.getBoard(new Pos(moveRow, moveColum)) == null && Main.chessBoard.getBoard(new Pos(currentRow, currentColum)) != null){
+                    return Main.chessBoard.getBoard(new Pos(currentRow, currentColum)).move(new Pos(moveRow, moveColum));
+                }
+            }
+
+        }
+        return false;
+        
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private Piece[][] setupBoard(){
         Piece[][] tempBoard = new Piece[8][8];
         for(int i = 0; i < tempBoard.length; i++){
-            tempBoard[i][1] = new Pawn(new Pos(i, 1), true);
+            tempBoard[i][1] = new Pawn(new Pos(i, 1), false);
         }
 
         for(int i = 0; i < tempBoard.length; i++){
-            tempBoard[i][6] = new Pawn(new Pos(i, 6), false);
+            tempBoard[i][6] = new Pawn(new Pos(i, 6), true);
         }
-        tempBoard[0][0] = new Rook(new Pos(0, 0), true);
-        tempBoard[7][0] = new Rook(new Pos(7, 0), true);
-        tempBoard[1][0] = new Knight(new Pos(1, 0), true);
-        tempBoard[6][0] = new Knight(new Pos(6, 0), true);
-        tempBoard[2][0] = new Bishop(new Pos(2, 0), true);
-        tempBoard[5][0] = new Bishop(new Pos(5, 0), true);
-        tempBoard[3][0] = new Queen(new Pos(3, 0), true);
-        tempBoard[4][0] = new King(new Pos(4, 0), true);
+        tempBoard[0][0] = new Rook(new Pos(0, 0), false);
+        tempBoard[7][0] = new Rook(new Pos(7, 0), false);
+        tempBoard[1][0] = new Knight(new Pos(1, 0), false);
+        tempBoard[6][0] = new Knight(new Pos(6, 0), false);
+        tempBoard[2][0] = new Bishop(new Pos(2, 0), false);
+        tempBoard[5][0] = new Bishop(new Pos(5, 0), false);
+        tempBoard[3][0] = new Queen(new Pos(3, 0), false);
+        tempBoard[4][0] = new King(new Pos(4, 0), false);
 
-        tempBoard[0][7] = new Rook(new Pos(0, 0), false);
-        tempBoard[7][7] = new Rook(new Pos(7, 0), false);
-        tempBoard[1][7] = new Knight(new Pos(1, 0), false);
-        tempBoard[6][7] = new Knight(new Pos(6, 0), false);
-        tempBoard[2][7] = new Bishop(new Pos(2, 0), false);
-        tempBoard[5][7] = new Bishop(new Pos(5, 0), false);
-        tempBoard[3][7] = new Queen(new Pos(3, 0), false);
-        tempBoard[4][7] = new King(new Pos(4, 0), false);
+        tempBoard[0][7] = new Rook(new Pos(0, 0), true);
+        tempBoard[7][7] = new Rook(new Pos(7, 0), true);
+        tempBoard[1][7] = new Knight(new Pos(1, 0), true);
+        tempBoard[6][7] = new Knight(new Pos(6, 0), true);
+        tempBoard[2][7] = new Bishop(new Pos(2, 0), true);
+        tempBoard[5][7] = new Bishop(new Pos(5, 0), true);
+        tempBoard[3][7] = new Queen(new Pos(3, 0), true);
+        tempBoard[4][7] = new King(new Pos(4, 0), true);
         
         
 

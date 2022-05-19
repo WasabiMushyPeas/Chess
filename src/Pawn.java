@@ -7,16 +7,26 @@ public class Pawn extends Piece {
 
     public Boolean move(Pos moveTo){
         if(super.isWhite()){
-            if(super.getPos().getColum() + 1 == moveTo.getColum()){
+            if(super.getPos().getColum() - 1 == moveTo.getColum()){
                 if(Main.chessBoard.getBoard(moveTo) == null && moveTo.getRow() == super.getPos().getRow()){
-                    super.move();
+                    super.moved();
                     Main.chessBoard.setPos(this, this.getPos(), moveTo);
                     return true;
                 }
                 if(Main.chessBoard.getBoard(moveTo) != null && (super.getPos().getRow() + 1 == moveTo.getRow() || super.getPos().getRow() - 1 == moveTo.getRow())){
-                    Main.chessBoard.getBoard(moveTo).take();
+                    Main.chessBoard.takePos(moveTo);
+                    super.moved();
+                    Main.chessBoard.setPos(this, this.getPos(), moveTo);
+                    return true;
 
                 }
+            }else{
+                if(super.getPos().getColum() - 2 == moveTo.getColum() && Main.chessBoard.getBoard(moveTo) == null && moveTo.getRow() == super.getPos().getRow() && Main.chessBoard.getBoard(new Pos(moveTo.getRow(), moveTo.getColum()-1)) == null){
+                    super.moved();
+                    Main.chessBoard.setPos(this, this.getPos(), moveTo);
+                    return true;
+                }
+
             }
         }
         return false;        

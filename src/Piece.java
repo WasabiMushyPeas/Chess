@@ -26,10 +26,6 @@ public class Piece {
         return position;
     }
 
-    public void move(){
-        HasMoved = true;
-    }
-
     public boolean hasMoved(){
         return HasMoved;
     }
@@ -49,14 +45,14 @@ public class Piece {
     public String name(){
         return name;
     }
-
-    public void take(){
-
-    }
-
     public Character getLetter(){
         return letter;
     }
 
-    
+    public void moved(){
+        HasMoved = true;
+    }
+    public Boolean move(Pos pos){
+        return true;
+    }       
 }

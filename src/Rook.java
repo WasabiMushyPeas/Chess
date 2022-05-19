@@ -6,89 +6,65 @@ public class Rook extends Piece {
     }
 
     public Boolean move(Pos moveTo) {
+        int moveToRow = moveTo.getRow();
+        int moveToColum = moveTo.getColum();
+        int currentRow = this.getPos().getRow();
+        int currentColum = this.getPos().getColum();
 
-        if (this.getPos().getRow() == moveTo.getRow()) {
-            if (this.getPos().getColum() > moveTo.getColum()) {
-                for (int i = 0; i < (this.getPos().getColum() - moveTo.getColum()) + 1; i++) {
-                    int test1 = (i + moveTo.getColum());
-                    if (Main.chessBoard.getBoard(new Pos(moveTo.getRow(), (i + moveTo.getColum()))) != null) {
+
+        if(moveToRow == currentRow){
+            if(moveToColum < currentColum){
+                for(int i = currentColum - 1; i > moveToColum; i--){
+                    if(Main.chessBoard.getBoard(new Pos(currentRow, i)) != null){
+                        System.out.println("There is a piece in the way");
                         return false;
                     }
                 }
-
-            } else {
-                for (int i = 0; i < (moveTo.getColum() - this.getPos().getColum()) - 1; i++) {
-                    int test2 = (this.getPos().getColum() - i);
-                    if (Main.chessBoard
-                            .getBoard(new Pos(moveTo.getRow(), (this.getPos().getColum() - i))) != null) {
-                        return false;
-                    }
-                }
-
-            }
-            
-
-
-
-
-
-
-            if (Main.chessBoard.getBoard(moveTo) == null) {
-
-                super.moved();
-                Main.chessBoard.setPos(this, this.getPos(), moveTo);
-                return true;
-
-            } else {
-                Main.chessBoard.takePos(moveTo, this.isWhite());
-                super.moved();
-                Main.chessBoard.setPos(this, this.getPos(), moveTo);
-                return true;
-            }
-
-
-
-        } else {
-            if (this.getPos().getColum() == moveTo.getColum()) {
-
-                if (this.getPos().getRow() > moveTo.getRow()) {
-                    for (int i = 0; i < (this.getPos().getRow() - moveTo.getRow()) + 1; i++) {
-                        int test1 = (i + moveTo.getRow()) + 1;
-                        if (Main.chessBoard.getBoard(new Pos((i + moveTo.getRow()) + 1, moveTo.getColum())) != null) {
+            }else{
+                if(currentColum < moveToColum){
+                    for(int i = currentColum + 1; i < moveToColum; i++){
+                        if(Main.chessBoard.getBoard(new Pos(currentRow, i)) != null){
+                            System.out.println("There is a piece in the way");
                             return false;
                         }
                     }
-            
-                } else {
-                    for (int i = 0; i < (moveTo.getRow() - this.getPos().getRow()) - 1; i++) {
-                        int test2 = (this.getPos().getRow() - i) - 1;
-                        if (Main.chessBoard.getBoard(new Pos((this.getPos().getRow() - i) - 1, moveTo.getColum())) != null) {
+                }
+            }
+        }else{
+            if(moveToColum == currentColum){
+                if(moveToRow < currentRow){
+                    for(int i = currentRow - 1; i > moveToRow; i++){
+                        if(Main.chessBoard.getBoard(new Pos(i, currentColum)) != null){
+                            System.out.println("There is a piece in the way");
                             return false;
                         }
                     }
-            
+                }else{
+                    if(currentRow < moveToRow){
+                        for(int i = currentRow + 1; i < moveToRow; i++){
+                            if(Main.chessBoard.getBoard(new Pos(i, currentColum)) != null){
+                                System.out.println("There is a piece in the way");
+                                return false;
+                            }
+                        }
+                    }
                 }
-               
-
-            if (Main.chessBoard.getBoard(moveTo) == null) {
-
-                super.moved();
-                Main.chessBoard.setPos(this, this.getPos(), moveTo);
-                return true;
-
-            } else {
-                Main.chessBoard.takePos(moveTo, this.isWhite());
-                super.moved();
-                Main.chessBoard.setPos(this, this.getPos(), moveTo);
-                return true;
             }
-
-
-            }
-
-
         }
-        return false;
+
+
+        if(Main.chessBoard.getBoard(moveTo) == null){
+            super.moved();
+            Main.chessBoard.setPos(this, this.getPos(), moveTo);
+            return true;
+        }else{
+            if(Main.chessBoard.getBoard(moveTo).isWhite() != this.isWhite())
+            Main.chessBoard.takePos(moveTo, this.isWhite());
+            super.moved();
+            Main.chessBoard.setPos(this, this.getPos(), moveTo);
+            return true;
+        }
+
     }
 
 }

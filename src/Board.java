@@ -56,7 +56,7 @@ public class Board {
         int currentColum = 0;
         int moveRow = 0;
         int moveColum = 0;
-        if(input.length() == 6){
+        if(input.length() == 5){
             if(input.charAt(1) != ' '){
                 currentColum = 7 - (Character.getNumericValue(input.charAt(1)) - 1);
             }else{
@@ -89,7 +89,7 @@ public class Board {
                 return false;
             }
             if(moveRow >= 0 && moveRow <= 7){
-                if(Main.chessBoard.getBoard(new Pos(currentRow, currentColum)) != null){
+                if(Main.chessBoard.getBoard(new Pos(currentRow, currentColum)) != null && Main.chessBoard.getBoard(new Pos(currentRow, currentColum)).isWhite()){
                     return Main.chessBoard.getBoard(new Pos(currentRow, currentColum)).move(new Pos(moveRow, moveColum));
                 }
             }
@@ -135,14 +135,14 @@ public class Board {
         tempBoard[3][0] = new Queen(new Pos(3, 0), false);
         tempBoard[4][0] = new King(new Pos(4, 0), false);
 
-        tempBoard[0][7] = new Rook(new Pos(0, 0), true);
-        tempBoard[7][7] = new Rook(new Pos(7, 0), true);
-        tempBoard[1][7] = new Knight(new Pos(1, 0), true);
-        tempBoard[6][7] = new Knight(new Pos(6, 0), true);
-        tempBoard[2][7] = new Bishop(new Pos(2, 0), true);
-        tempBoard[5][7] = new Bishop(new Pos(5, 0), true);
-        tempBoard[3][7] = new Queen(new Pos(3, 0), true);
-        tempBoard[4][7] = new King(new Pos(4, 0), true);
+        tempBoard[0][7] = new Rook(new Pos(0, 7), true);
+        tempBoard[7][7] = new Rook(new Pos(7, 7), true);
+        tempBoard[1][7] = new Knight(new Pos(1, 7), true);
+        tempBoard[6][7] = new Knight(new Pos(6, 7), true);
+        tempBoard[2][7] = new Bishop(new Pos(2, 7), true);
+        tempBoard[5][7] = new Bishop(new Pos(5, 7), true);
+        tempBoard[3][7] = new Queen(new Pos(3, 7), true);
+        tempBoard[4][7] = new King(new Pos(4, 7), true);
         
         
 

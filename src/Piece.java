@@ -1,4 +1,5 @@
 package src;
+
 public class Piece {
     private Pos position = new Pos();
     private int value;
@@ -7,7 +8,7 @@ public class Piece {
     private String name;
     private Character letter;
 
-    public Piece(Pos pos, int value, boolean isWhite, String name, Character leter){
+    public Piece(Pos pos, int value, boolean isWhite, String name, Character leter) {
         position = pos;
         this.value = value;
         this.isWhite = isWhite;
@@ -15,43 +16,45 @@ public class Piece {
         this.letter = leter;
     }
 
-    public Pos setPos(Pos pos){
+    public Pos setPos(Pos pos) {
         Pos temp = position;
         position = pos;
         return temp;
     }
 
-    public Pos getPos(){
+    public Pos getPos() {
         return position;
     }
 
-    public boolean hasMoved(){
+    public boolean hasMoved() {
         return HasMoved;
     }
 
-    public boolean isWhite(){
+    public boolean isWhite() {
         return isWhite;
     }
 
-    public int getValue(){
+    public int getValue() {
         return value;
     }
 
-    public boolean equals(Piece piece){
+    public boolean equals(Piece piece) {
         return position == piece.getPos() && isWhite == piece.isWhite() && value == piece.getValue();
     }
 
-    public String name(){
+    public String name() {
         return name;
     }
-    public Character getLetter(){
+
+    public Character getLetter() {
         return letter;
     }
 
-    public void moved(){
+    public void moved() {
         HasMoved = true;
     }
-    public boolean move(Pos pos){
+
+    public boolean move(Pos pos) {
         return true;
-    }       
+    }
 }

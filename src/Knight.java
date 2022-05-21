@@ -21,17 +21,17 @@ public class Knight extends Piece {
                 || (currentRow - 1 == moveToRow && currentColum + 2 == moveToColum)
                 || (currentRow - 2 == moveToRow && currentColum + 1 == moveToColum)) {
 
-                    if(Main.chessBoard.getBoard(moveTo) == null){
-                        super.moved();
-                        Main.chessBoard.setPosBoard(this, this.getPos(), moveTo);
-                        return true;
-                    }else{
-                        if(Main.chessBoard.getBoard(moveTo).isWhite() != this.isWhite())
-                        Main.chessBoard.takePos(moveTo, this.isWhite());
-                        super.moved();
-                        Main.chessBoard.setPosBoard(this, this.getPos(), moveTo);
-                        return true;
-                    }
+            if (Main.chessBoard.getBoard(moveTo) == null) {
+                super.moved();
+                Main.chessBoard.setPosBoard(this, this.getPos(), moveTo);
+                return true;
+            } else {
+                if (Main.chessBoard.getBoard(moveTo).isWhite() != this.isWhite())
+                    Main.chessBoard.takePos(moveTo, this.isWhite());
+                super.moved();
+                Main.chessBoard.setPosBoard(this, this.getPos(), moveTo);
+                return true;
+            }
 
         }
         return false;

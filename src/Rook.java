@@ -32,7 +32,7 @@ public class Rook extends Piece {
         } else {
             if (moveToColum == currentColum) {
                 if (moveToRow < currentRow) {
-                    for (int i = currentRow - 1; i > moveToRow; i++) {
+                    for (int i = moveToRow + 1; i > currentRow; i++) {
                         if (Main.chessBoard.getBoard(new Pos(i, currentColum)) != null) {
                             System.out.println("There is a piece in the way");
                             return false;

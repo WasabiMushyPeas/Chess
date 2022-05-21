@@ -50,11 +50,26 @@ public class Piece {
         return letter;
     }
 
-    public void moved() {
-        HasMoved = true;
+    public boolean move(Pos moveTo) {
+        if (canMove(moveTo)) {
+            if (Main.chessBoard.getBoard(moveTo) == null) {
+                HasMoved = true;
+                Main.chessBoard.setPosBoard(this, this.getPos(), moveTo);
+                return true;
+            } else {
+                if (Main.chessBoard.getBoard(moveTo).isWhite() != this.isWhite())
+                    Main.chessBoard.takePos(moveTo, this.isWhite());
+                HasMoved = true;
+                Main.chessBoard.setPosBoard(this, this.getPos(), moveTo);
+                return true;
+            }
+
+        }
+        return false;
+
     }
 
-    public boolean move(Pos pos) {
-        return true;
+    public boolean canMove(Pos moveTo){
+        return false;
     }
 }

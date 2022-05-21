@@ -5,7 +5,8 @@ public class Queen extends Piece {
         super(pos, 9, isWhite, "Queen", 'Q');
     }
 
-    public boolean move(Pos moveTo) {
+
+    public boolean canMove(Pos moveTo) {
         int moveToRow = moveTo.getRow();
         int moveToColum = moveTo.getColum();
         int currentRow = this.getPos().getRow();
@@ -86,18 +87,6 @@ public class Queen extends Piece {
         } else {
             return false;
         }
-
-        if (Main.chessBoard.getBoard(moveTo) == null) {
-            super.moved();
-            Main.chessBoard.setPosBoard(this, this.getPos(), moveTo);
-            return true;
-        } else {
-            if (Main.chessBoard.getBoard(moveTo).isWhite() != this.isWhite())
-                Main.chessBoard.takePos(moveTo, this.isWhite());
-            super.moved();
-            Main.chessBoard.setPosBoard(this, this.getPos(), moveTo);
-            return true;
-        }
-
+        return true;
     }
 }

@@ -1,11 +1,11 @@
 package src;
 
 public class Knight extends Piece {
-    public Knight(Pos pos, Boolean isWhite) {
+    public Knight(Pos pos, boolean isWhite) {
         super(pos, 3, isWhite, "Knight", 'k');
     }
 
-    public Boolean move(Pos moveTo) {
+    public boolean move(Pos moveTo) {
         int moveToRow = moveTo.getRow();
         int moveToColum = moveTo.getColum();
         int currentRow = this.getPos().getRow();
@@ -23,13 +23,13 @@ public class Knight extends Piece {
 
                     if(Main.chessBoard.getBoard(moveTo) == null){
                         super.moved();
-                        Main.chessBoard.setPos(this, this.getPos(), moveTo);
+                        Main.chessBoard.setPosBoard(this, this.getPos(), moveTo);
                         return true;
                     }else{
                         if(Main.chessBoard.getBoard(moveTo).isWhite() != this.isWhite())
                         Main.chessBoard.takePos(moveTo, this.isWhite());
                         super.moved();
-                        Main.chessBoard.setPos(this, this.getPos(), moveTo);
+                        Main.chessBoard.setPosBoard(this, this.getPos(), moveTo);
                         return true;
                     }
 

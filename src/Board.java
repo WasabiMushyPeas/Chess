@@ -25,14 +25,14 @@ public class Board {
         return board[pos.getRow()][pos.getColum()];
     }
 
-    public Piece[][] setPos(Piece piece, Pos OldPos, Pos NewPos){
+    public Piece[][] setPosBoard(Piece piece, Pos OldPos, Pos NewPos){
         board[OldPos.getRow()][OldPos.getColum()] = null;
         board[NewPos.getRow()][NewPos.getColum()] = piece;
         piece.setPos(NewPos);
         return board;
     }
 
-    public void takePos(Pos setPos, Boolean isWhite){
+    public void takePos(Pos setPos, boolean isWhite){
         if(this.getBoard(setPos).isWhite() != isWhite){
             board[setPos.getRow()][setPos.getColum()] = null;
         }
@@ -51,7 +51,7 @@ public class Board {
         return piecePos;
     }
 
-    public Boolean humanInput(String input){
+    public boolean humanInput(String input){
         int currentRow = 0;
         int currentColum = 0;
         int moveRow = 0;

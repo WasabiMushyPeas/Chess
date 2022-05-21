@@ -2,9 +2,8 @@ package src;
 public class Piece {
     private Pos position = new Pos();
     private int value;
-    private Boolean isAlive = true;
-    private Boolean isWhite = true;
-    private Boolean HasMoved = false;
+    private boolean isWhite = true;
+    private boolean HasMoved = false;
     private String name;
     private Character letter;
 
@@ -52,7 +51,7 @@ public class Piece {
     public void moved(){
         HasMoved = true;
     }
-    public Boolean move(Pos pos){
+    public boolean move(Pos pos){
         return true;
     }       
 }

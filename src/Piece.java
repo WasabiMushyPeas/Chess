@@ -55,20 +55,24 @@ public class Piece {
             if (Main.chessBoard.getBoard(moveTo) == null) {
                 HasMoved = true;
                 Main.chessBoard.setPosBoard(this, this.getPos(), moveTo);
+                Main.chessBoard.getBoard(Main.chessBoard.getPosOfPiece(!this.isWhite(), 'K')).isInCheck();
                 return true;
             } else {
                 if (Main.chessBoard.getBoard(moveTo).isWhite() != this.isWhite())
                     Main.chessBoard.takePos(moveTo, this.isWhite());
                 HasMoved = true;
                 Main.chessBoard.setPosBoard(this, this.getPos(), moveTo);
+                Main.chessBoard.getBoard(Main.chessBoard.getPosOfPiece(!this.isWhite(), 'K')).isInCheck();
                 return true;
             }
-
         }
         return false;
 
     }
 
+    public boolean isInCheck(){
+        return false;
+    }
     public boolean canMove(Pos moveTo){
         return false;
     }

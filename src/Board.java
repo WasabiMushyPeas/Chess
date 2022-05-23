@@ -50,6 +50,30 @@ public class Board {
         return piecePos;
     }
 
+    public Pos getPosOfPiece(boolean isWhite, Character letter) {
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board.length; j++) {
+                if (board[i][j].isWhite() == isWhite && board[i][j].getLetter() == letter) {
+                    Pos piecePos = new Pos(i, j);
+                    return piecePos;
+                }
+            }
+        }
+        Pos piecePos = new Pos(-1, -1);
+        return piecePos;
+    }
+
+    public void endGame(boolean winnerIsWhite){
+        if(winnerIsWhite){
+            System.out.println("The winner is blue!");
+            System.exit(0);
+        }else{
+            System.out.println("The winner is red!");
+            System.exit(0);
+        }
+        
+    }
+
     public boolean humanInput(String input) {
         int currentRow = 0;
         int currentColum = 0;
@@ -89,7 +113,7 @@ public class Board {
             }
             if (moveRow >= 0 && moveRow <= 7) {
                 if (Main.chessBoard.getBoard(new Pos(currentRow, currentColum)) != null
-                        && Main.chessBoard.getBoard(new Pos(currentRow, currentColum)).isWhite()) {
+                        /*&& Main.chessBoard.getBoard(new Pos(currentRow, currentColum)).isWhite()*/) {
                     return Main.chessBoard.getBoard(new Pos(currentRow, currentColum))
                             .move(new Pos(moveRow, moveColum));
                 }

@@ -53,9 +53,11 @@ public class Board {
     public Pos getPosOfPiece(boolean isWhite, Character letter) {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board.length; j++) {
-                if (board[i][j].isWhite() == isWhite && board[i][j].getLetter() == letter) {
-                    Pos piecePos = new Pos(i, j);
-                    return piecePos;
+                if(this.getBoard(new Pos(i, j)) != null){
+                    if (this.getBoard(new Pos(i, j)).isWhite() == isWhite && board[i][j].getLetter() == letter) {
+                        Pos piecePos = new Pos(i, j);
+                        return piecePos;
+                    }
                 }
             }
         }

@@ -55,6 +55,8 @@ public class Piece {
             if (Main.chessBoard.getBoard(moveTo) == null) {
                 HasMoved = true;
                 Main.chessBoard.setPosBoard(this, this.getPos(), moveTo);
+                
+                System.out.println(Main.chessBoard.getPosOfPiece(!this.isWhite(), 'K').getRow() + ", " + Main.chessBoard.getPosOfPiece(!this.isWhite(), 'K').getColum());
                 Main.chessBoard.getBoard(Main.chessBoard.getPosOfPiece(!this.isWhite(), 'K')).isInCheck();
                 return true;
             } else {
@@ -62,10 +64,16 @@ public class Piece {
                     Main.chessBoard.takePos(moveTo, this.isWhite());
                 HasMoved = true;
                 Main.chessBoard.setPosBoard(this, this.getPos(), moveTo);
+
+                System.out.println(Main.chessBoard.getPosOfPiece(!this.isWhite(), 'K').getRow() + ", " + Main.chessBoard.getPosOfPiece(!this.isWhite(), 'K').getColum());
                 Main.chessBoard.getBoard(Main.chessBoard.getPosOfPiece(!this.isWhite(), 'K')).isInCheck();
                 return true;
             }
         }
+
+        System.out.println(Main.chessBoard.getPosOfPiece(!this.isWhite(), 'K').getRow() + ", " + Main.chessBoard.getPosOfPiece(!this.isWhite(), 'K').getColum());
+        Main.chessBoard.getBoard(Main.chessBoard.getPosOfPiece(!this.isWhite(), 'K')).isInCheck();
+
         return false;
 
     }

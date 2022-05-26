@@ -17,35 +17,47 @@ public class King extends Piece {
 
         if (currentColum + 1 == moveToColum || currentRow + 1 == moveToRow || currentColum - 1 == moveToColum
                 || currentRow - 1 == moveToRow) {
-                    if(!this.isInCheck(moveTo)){
-                        return true;
-                    }else{
-                        System.out.println("You can't move into check");
-                        return false;
-                    }
+            if (!this.isInCheck(moveTo)) {
+                return true;
+            } else {
+                System.out.println("You can't move into check");
+                return false;
+            }
         }
-        if (!this.hasMoved() && !this.isInCheck(moveTo) && currentRow + 3 == moveToRow && Main.chessBoard.getBoard(moveTo).getLetter() == 'R' && !Main.chessBoard.getBoard(moveTo).hasMoved()){
+        if (!this.hasMoved() && !this.isInCheck(moveTo) && currentRow + 3 == moveToRow
+                && Main.chessBoard.getBoard(moveTo).getLetter() == 'R'
+                && !Main.chessBoard.getBoard(moveTo).hasMoved()) {
             return true;
         }
-        if (!this.hasMoved() && !this.isInCheck(moveTo) && currentRow - 4 == moveToRow && Main.chessBoard.getBoard(moveTo).getLetter() == 'R' && !Main.chessBoard.getBoard(moveTo).hasMoved()){
+        if (!this.hasMoved() && !this.isInCheck(moveTo) && currentRow - 4 == moveToRow
+                && Main.chessBoard.getBoard(moveTo).getLetter() == 'R'
+                && !Main.chessBoard.getBoard(moveTo).hasMoved()) {
             return true;
         }
 
         return false;
     }
 
-    public boolean move(Pos moveTo){
+    public boolean move(Pos moveTo) {
         int moveToRow = moveTo.getRow();
         int moveToColum = moveTo.getColum();
         int currentRow = this.getPos().getRow();
         int currentColum = this.getPos().getColum();
-        if (!this.hasMoved() && !this.isInCheck(moveTo) && currentRow + 3 == moveToRow && Main.chessBoard.getBoard(moveTo).getLetter() == 'R' && !Main.chessBoard.getBoard(moveTo).hasMoved()){
-            Main.chessBoard.setPosBoard(Main.chessBoard.getBoard(moveTo), Main.chessBoard.getBoard(moveTo).getPos(), new Pos(Main.chessBoard.getBoard(moveTo).getPos().getRow() - 2, Main.chessBoard.getBoard(moveTo).getPos().getColum()));
+        if (!this.hasMoved() && !this.isInCheck(moveTo) && currentRow + 3 == moveToRow
+                && Main.chessBoard.getBoard(moveTo).getLetter() == 'R'
+                && !Main.chessBoard.getBoard(moveTo).hasMoved()) {
+            Main.chessBoard.setPosBoard(Main.chessBoard.getBoard(moveTo), Main.chessBoard.getBoard(moveTo).getPos(),
+                    new Pos(Main.chessBoard.getBoard(moveTo).getPos().getRow() - 2,
+                            Main.chessBoard.getBoard(moveTo).getPos().getColum()));
             Main.chessBoard.setPosBoard(this, this.getPos(), new Pos(currentRow + 2, currentColum));
             return true;
         }
-        if (!this.hasMoved() && !this.isInCheck(moveTo) && currentRow - 4 == moveToRow && Main.chessBoard.getBoard(moveTo).getLetter() == 'R' && !Main.chessBoard.getBoard(moveTo).hasMoved()){
-            Main.chessBoard.setPosBoard(Main.chessBoard.getBoard(moveTo), Main.chessBoard.getBoard(moveTo).getPos(), new Pos(Main.chessBoard.getBoard(moveTo).getPos().getRow() + 3, Main.chessBoard.getBoard(moveTo).getPos().getColum()));
+        if (!this.hasMoved() && !this.isInCheck(moveTo) && currentRow - 4 == moveToRow
+                && Main.chessBoard.getBoard(moveTo).getLetter() == 'R'
+                && !Main.chessBoard.getBoard(moveTo).hasMoved()) {
+            Main.chessBoard.setPosBoard(Main.chessBoard.getBoard(moveTo), Main.chessBoard.getBoard(moveTo).getPos(),
+                    new Pos(Main.chessBoard.getBoard(moveTo).getPos().getRow() + 3,
+                            Main.chessBoard.getBoard(moveTo).getPos().getColum()));
             Main.chessBoard.setPosBoard(this, this.getPos(), new Pos(currentRow - 2, currentColum));
             return true;
         }
@@ -57,16 +69,17 @@ public class King extends Piece {
             for (int k = 0; k < 8; k++) {
                 if (Main.chessBoard.getBoard(new Pos(i, k)) != null
                         && Main.chessBoard.getBoard(new Pos(i, k)).isWhite() != this.isWhite()
-                        && canMove(this.getPos())) {
-                    if(isInCheck){
+                        && Main.chessBoard.getBoard(new Pos(i, k)).canMove(this.getPos()) && Main.chessBoard.getBoard(new Pos(i, k)).getLetter() != 'K') {
+                            System.out.println(Main.chessBoard.getBoard(new Pos(i, k)).getLetter() + " at " + i + ", " + k);
+                    if (isInCheck) {
                         Main.chessBoard.endGame(this.isWhite());
                     }
-                    if(this.isWhite()){
+                    if (this.isWhite()) {
                         System.out.println(ANSI_RED + "blue is in check" + ANSI_RESET);
-                        
-                    }else{
+
+                    } else {
                         System.out.println(ANSI_RED + "red is in check" + ANSI_RESET);
-                        
+
                     }
                     isInCheck = true;
                     return true;
@@ -75,17 +88,26 @@ public class King extends Piece {
         }
         isInCheck = false;
         return false;
-        
+
     }
 
     public boolean isInCheck(Pos isPosInCheck) {
         for (int i = 0; i < 8; i++) {
             for (int k = 0; k < 8; k++) {
-                if (Main.chessBoard.getBoard(new Pos(i, k)) != null
-                        && Main.chessBoard.getBoard(new Pos(i, k)).isWhite() != this.isWhite()
-                        && canMove(isPosInCheck)) {
-                    return true;
+                if (Main.chessBoard.getBoard(new Pos(i, k)) != null) {
+                    //System.out.println(Main.chessBoard.getBoard(new Pos(i, k)).getLetter() + ", is white:" + Main.chessBoard.getBoard(new Pos(i, k)).isWhite() + ", can move:" + Main.chessBoard.getBoard(new Pos(i, k)).canMove(isPosInCheck));
+                    if (Main.chessBoard.getBoard(new Pos(i, k)).getLetter() != 'K') {
+                        if (Main.chessBoard.getBoard(new Pos(i, k)).isWhite() != this.isWhite()
+                                && Main.chessBoard.getBoard(new Pos(i, k)).canMove(isPosInCheck)) {
+                            System.out.println(Main.chessBoard.getBoard(new Pos(i, k)).getLetter());
+                            System.out.println("In check");
+                            return true;
+
+                        }
+                    }
+
                 }
+
             }
         }
         return false;

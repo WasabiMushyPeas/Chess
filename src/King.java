@@ -106,9 +106,7 @@ public class King extends Piece {
                                 && Main.chessBoard.getBoard(new Pos(i, k)).canMove(isPosInCheck)) {
                             System.out.println(Main.chessBoard.getBoard(new Pos(i, k)).getLetter() + " at " + i + ", "
                                     + k + " and is white " + Main.chessBoard.getBoard(new Pos(i, k)).isWhite()
-                                    + "and king is white: " + this.isWhite());
-                            System.out.println(Main.chessBoard.getBoard(new Pos(i, k)).getLetter());
-                            System.out.println("In check");
+                                    + " and king is white: " + this.isWhite() + " at pos " + this.getPos().getRow() + ", " + this.getPos().getColum());
                             return true;
 
                         }

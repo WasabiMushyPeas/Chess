@@ -56,8 +56,9 @@ public class Piece {
                 HasMoved = true;
                 Main.chessBoard.setPosBoard(this, this.getPos(), moveTo);
                 
-                System.out.println(Main.chessBoard.getPosOfPiece(!this.isWhite(), 'K').getRow() + ", " + Main.chessBoard.getPosOfPiece(!this.isWhite(), 'K').getColum());
+                //System.out.println(Main.chessBoard.getPosOfPiece(!this.isWhite(), 'K').getRow() + ", " + Main.chessBoard.getPosOfPiece(!this.isWhite(), 'K').getColum());
                 Main.chessBoard.getBoard(Main.chessBoard.getPosOfPiece(!this.isWhite(), 'K')).isInCheck();
+                Main.chessBoard.getBoard(Main.chessBoard.getPosOfPiece(this.isWhite(), 'K')).isInCheck();
                 return true;
             } else {
                 if (Main.chessBoard.getBoard(moveTo).isWhite() != this.isWhite())
@@ -65,15 +66,16 @@ public class Piece {
                 HasMoved = true;
                 Main.chessBoard.setPosBoard(this, this.getPos(), moveTo);
 
-                System.out.println(Main.chessBoard.getPosOfPiece(!this.isWhite(), 'K').getRow() + ", " + Main.chessBoard.getPosOfPiece(!this.isWhite(), 'K').getColum());
+                //System.out.println(Main.chessBoard.getPosOfPiece(!this.isWhite(), 'K').getRow() + ", " + Main.chessBoard.getPosOfPiece(!this.isWhite(), 'K').getColum());
                 Main.chessBoard.getBoard(Main.chessBoard.getPosOfPiece(!this.isWhite(), 'K')).isInCheck();
+                Main.chessBoard.getBoard(Main.chessBoard.getPosOfPiece(this.isWhite(), 'K')).isInCheck();
                 return true;
             }
         }
 
-        System.out.println(Main.chessBoard.getPosOfPiece(!this.isWhite(), 'K').getRow() + ", " + Main.chessBoard.getPosOfPiece(!this.isWhite(), 'K').getColum());
+        //System.out.println(Main.chessBoard.getPosOfPiece(!this.isWhite(), 'K').getRow() + ", " + Main.chessBoard.getPosOfPiece(!this.isWhite(), 'K').getColum());
         Main.chessBoard.getBoard(Main.chessBoard.getPosOfPiece(!this.isWhite(), 'K')).isInCheck();
-
+        Main.chessBoard.getBoard(Main.chessBoard.getPosOfPiece(this.isWhite(), 'K')).isInCheck();
         return false;
 
     }

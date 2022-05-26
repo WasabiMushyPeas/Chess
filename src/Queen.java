@@ -87,6 +87,11 @@ public class Queen extends Piece {
         } else {
             return false;
         }
-        return true;
+        if((Math.abs(moveToRow - currentRow) == Math.abs(moveToColum - currentColum)) || (moveToRow == currentRow) || (moveToColum == currentColum)){
+            return true;
+        }else{
+            return false;
+        }
+        
     }
 }

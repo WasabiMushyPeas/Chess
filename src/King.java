@@ -69,8 +69,11 @@ public class King extends Piece {
             for (int k = 0; k < 8; k++) {
                 if (Main.chessBoard.getBoard(new Pos(i, k)) != null
                         && Main.chessBoard.getBoard(new Pos(i, k)).isWhite() != this.isWhite()
-                        && Main.chessBoard.getBoard(new Pos(i, k)).canMove(this.getPos()) && Main.chessBoard.getBoard(new Pos(i, k)).getLetter() != 'K') {
-                            System.out.println(Main.chessBoard.getBoard(new Pos(i, k)).getLetter() + " at " + i + ", " + k);
+                        && Main.chessBoard.getBoard(new Pos(i, k)).canMove(this.getPos())
+                        && Main.chessBoard.getBoard(new Pos(i, k)).getLetter() != 'K') {
+                    System.out.println(Main.chessBoard.getBoard(new Pos(i, k)).getLetter() + " at " + i + ", " + k
+                            + " and is white " + Main.chessBoard.getBoard(new Pos(i, k)).isWhite()
+                            + "and king is white: " + this.isWhite());
                     if (isInCheck) {
                         Main.chessBoard.endGame(this.isWhite());
                     }
@@ -95,10 +98,15 @@ public class King extends Piece {
         for (int i = 0; i < 8; i++) {
             for (int k = 0; k < 8; k++) {
                 if (Main.chessBoard.getBoard(new Pos(i, k)) != null) {
-                    //System.out.println(Main.chessBoard.getBoard(new Pos(i, k)).getLetter() + ", is white:" + Main.chessBoard.getBoard(new Pos(i, k)).isWhite() + ", can move:" + Main.chessBoard.getBoard(new Pos(i, k)).canMove(isPosInCheck));
+                    // System.out.println(Main.chessBoard.getBoard(new Pos(i, k)).getLetter() + ",
+                    // is white:" + Main.chessBoard.getBoard(new Pos(i, k)).isWhite() + ", can
+                    // move:" + Main.chessBoard.getBoard(new Pos(i, k)).canMove(isPosInCheck));
                     if (Main.chessBoard.getBoard(new Pos(i, k)).getLetter() != 'K') {
                         if (Main.chessBoard.getBoard(new Pos(i, k)).isWhite() != this.isWhite()
                                 && Main.chessBoard.getBoard(new Pos(i, k)).canMove(isPosInCheck)) {
+                            System.out.println(Main.chessBoard.getBoard(new Pos(i, k)).getLetter() + " at " + i + ", "
+                                    + k + " and is white " + Main.chessBoard.getBoard(new Pos(i, k)).isWhite()
+                                    + "and king is white: " + this.isWhite());
                             System.out.println(Main.chessBoard.getBoard(new Pos(i, k)).getLetter());
                             System.out.println("In check");
                             return true;

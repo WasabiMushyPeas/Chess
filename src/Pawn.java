@@ -23,7 +23,7 @@ public class Pawn extends Piece {
             } else {
                 if (super.getPos().getColum() - 2 == moveTo.getColum() && Main.chessBoard.getBoard(moveTo) == null
                         && moveTo.getRow() == super.getPos().getRow()
-                        && Main.chessBoard.getBoard(new Pos(moveTo.getRow(), moveTo.getColum() - 1)) == null) {
+                        && Main.chessBoard.getBoard(new Pos(moveTo.getRow(), moveTo.getColum() + 1)) == null) {
 
                     return true;
                 }
@@ -44,7 +44,7 @@ public class Pawn extends Piece {
             } else {
                 if (super.getPos().getColum() + 2 == moveTo.getColum() && Main.chessBoard.getBoard(moveTo) == null
                         && moveTo.getRow() == super.getPos().getRow()
-                        && Main.chessBoard.getBoard(new Pos(moveTo.getRow(), moveTo.getColum() + 1)) == null) {
+                        && Main.chessBoard.getBoard(new Pos(moveTo.getRow(), moveTo.getColum() - 1)) == null) {
                     return true;
                 }
 

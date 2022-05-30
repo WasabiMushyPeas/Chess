@@ -5,7 +5,6 @@ public class Queen extends Piece {
         super(pos, 9, isWhite, "Queen", 'Q');
     }
 
-
     public boolean canMove(Pos moveTo) {
         int moveToRow = moveTo.getRow();
         int moveToColum = moveTo.getColum();
@@ -17,7 +16,7 @@ public class Queen extends Piece {
             if (moveToColum < currentColum) {
                 for (int i = currentColum - 1; i > moveToColum; i--) {
                     if (Main.chessBoard.getBoard(new Pos(currentRow, i)) != null) {
-                        //System.out.println("There is a piece in the way");
+                        // System.out.println("There is a piece in the way");
                         return false;
                     }
                 }
@@ -25,7 +24,7 @@ public class Queen extends Piece {
                 if (currentColum < moveToColum) {
                     for (int i = currentColum + 1; i < moveToColum; i++) {
                         if (Main.chessBoard.getBoard(new Pos(currentRow, i)) != null) {
-                            //System.out.println("There is a piece in the way");
+                            // System.out.println("There is a piece in the way");
                             return false;
                         }
                     }
@@ -35,7 +34,7 @@ public class Queen extends Piece {
             if (moveToRow < currentRow) {
                 for (int i = moveToRow + 1; i < currentRow; i++) {
                     if (Main.chessBoard.getBoard(new Pos(i, currentColum)) != null) {
-                        //System.out.println("There is a piece in the way");
+                        // System.out.println("There is a piece in the way");
                         return false;
                     }
                 }
@@ -43,7 +42,7 @@ public class Queen extends Piece {
                 if (currentRow < moveToRow) {
                     for (int i = currentRow + 1; i < moveToRow; i++) {
                         if (Main.chessBoard.getBoard(new Pos(i, currentColum)) != null) {
-                            //System.out.println("There is a piece in the way");
+                            // System.out.println("There is a piece in the way");
                             return false;
                         }
                     }
@@ -54,7 +53,7 @@ public class Queen extends Piece {
             if (moveToColum < currentColum && moveToRow < currentRow) {
                 for (int i = 1; i <= diff - 1; i++) {
                     if (Main.chessBoard.getBoard(new Pos(currentColum - i, currentRow - i)) != null) {
-                        //System.out.println("There is a piece in the way");
+                        // System.out.println("There is a piece in the way");
                         return false;
                     }
                 }
@@ -62,7 +61,7 @@ public class Queen extends Piece {
             if (moveToColum > currentColum && moveToRow < currentRow) {
                 for (int i = 1; i <= diff - 1; i++) {
                     if (Main.chessBoard.getBoard(new Pos(currentRow - i, currentColum + i)) != null) {
-                        //System.out.println("There is a piece in the way");
+                        // System.out.println("There is a piece in the way");
                         return false;
                     }
                 }
@@ -70,7 +69,7 @@ public class Queen extends Piece {
             if (moveToColum < currentColum && moveToRow > currentRow) {
                 for (int i = 1; i <= diff - 1; i++) {
                     if (Main.chessBoard.getBoard(new Pos(currentRow + i, currentColum - i)) != null) {
-                        //System.out.println("There is a piece in the way");
+                        // System.out.println("There is a piece in the way");
                         return false;
                     }
                 }
@@ -78,7 +77,7 @@ public class Queen extends Piece {
             if (moveToColum > currentColum && moveToRow > currentRow) {
                 for (int i = 1; i <= diff - 1; i++) {
                     if (Main.chessBoard.getBoard(new Pos(currentRow + i, currentColum + i)) != null) {
-                        //System.out.println("There is a piece in the way");
+                        // System.out.println("There is a piece in the way");
                         return false;
                     }
                 }
@@ -87,11 +86,18 @@ public class Queen extends Piece {
         } else {
             return false;
         }
-        if(((Math.abs(moveToRow - currentRow) == Math.abs(moveToColum - currentColum)) || (moveToRow == currentRow) || (moveToColum == currentColum)) && Main.chessBoard.getBoard(moveTo).isWhite() != this.isWhite()){
+        if (((Math.abs(moveToRow - currentRow) == Math.abs(moveToColum - currentColum)) || (moveToRow == currentRow)
+                || (moveToColum == currentColum)) && Main.chessBoard.getBoard(moveTo) == null) {
+
             return true;
-        }else{
+        } else if (((Math.abs(moveToRow - currentRow) == Math.abs(moveToColum - currentColum))
+                || (moveToRow == currentRow) || (moveToColum == currentColum))
+                && Main.chessBoard.getBoard(moveTo) != null) {
+            if (Main.chessBoard.getBoard(moveTo).isWhite() != this.isWhite()) {
+                return true;
+            }
             return false;
         }
-        
+        return false;
     }
 }

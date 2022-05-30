@@ -75,7 +75,7 @@ public class King extends Piece {
                             + " and is white " + Main.chessBoard.getBoard(new Pos(i, k)).isWhite()
                             + "and king is white: " + this.isWhite());
                     if (isInCheck) {
-                        Main.chessBoard.endGame(this.isWhite());
+                        Main.chessBoard.endGame(!this.isWhite());
                     }
                     if (this.isWhite()) {
                         System.out.println(ANSI_RED + "blue is in check" + ANSI_RESET);
